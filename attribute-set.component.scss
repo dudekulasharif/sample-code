@@ -1,0 +1,156 @@
+.record-sections {
+  ::ng-deep {
+    margin-top: 15px;
+
+    .transalte-language {
+      font-size: 15px;
+      font-family: 'Futura Md BT' !important;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    mat-form-field {
+      .placeholder {
+        color: #cccccc;
+      }
+
+      .mat-form-field-flex {
+        &:hover {
+          .mat-form-field-outline-thick {
+            color: rgba(0, 0, 0, 0.12);
+          }
+        }
+      }
+    }
+
+    mat-panel-title {
+      align-items: center;
+
+      .icon-title {
+        width: 50.5%;
+
+        span {
+          font-family: 'Futura Md BT' !important;
+        }
+      }
+
+      .search-field {
+        width: 300px;
+        padding-left: 15px;
+        border-left: 1px solid #dadada;
+
+        .mat-form-field-infix {
+          padding: 6px 0 12px 0;
+        }
+      }
+    }
+
+    // Highlight the active section
+    .mat-expansion-panel.mat-expanded .mat-expansion-panel-header {
+      font-family: 'Futura Md BT';
+      height: 50px !important;
+      border-left: 5px solid #fd7e14;
+      background: #fff;
+      border-right: 1px solid #e4e4e4;
+      border-bottom: 1px solid #e4e4e4;
+      margin-top: 2px;
+      margin-bottom: 0px;
+      // This shadow is the top border
+      -webkit-box-shadow: 0px -1px 0px 0px rgba(228, 228, 228, 1);
+      -moz-box-shadow: 0px -1px 0px 0px rgba(228, 228, 228, 1);
+      box-shadow: 0px -1px 0px 0px rgba(228, 228, 228, 1);
+    }
+
+    .mat-expansion-panel-header {
+      cursor: pointer;
+      font-family: 'Futura Md BT';
+      height: 50px !important;
+      border-left: 5px solid #ccc;
+      border-radius: 0px;
+      background: #fff;
+      border-right: 1px solid #e4e4e4;
+      border-bottom: 1px solid #e4e4e4;
+      margin-top: 2px;
+      box-shadow: 0px -1px 0px 0px #e4e4e4;
+
+      .catalog-title-icon {
+        height: 16px;
+        width: 24px;
+        margin-right: 5px;
+      }
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+
+    .reset-save-row {
+      text-align: end;
+      padding-top: 15px;
+
+      .btn-cancel {
+        color: #00a384;
+        border-color: #00a384;
+        background-color: transparent;
+
+        &:hover {
+          color: white;
+          background-color: #00a384;
+        }
+      }
+    }
+
+    .tables-grouping {
+      border-left: 1px solid #dadada;
+      border-right: 1px solid #dadada;
+      display: flex;
+
+      p-table {
+        width: 100%;
+        display: inline-block;
+
+        &.selected-lang-table {
+          width: 50.6%;
+        }
+
+        .ui-table {
+          .ui-table-tbody {
+            >tr {
+              >td {
+                height: 68px;
+                padding: 9px 15px !important;
+
+                &:first-child {
+                  box-shadow: none !important;
+                  text-align: left;
+                }
+
+                &:nth-child(odd) {
+                  width: 13.5% !important;
+                }
+
+                &:nth-child(even) {
+                  width: 32% !important;
+                }
+              }
+            }
+          }
+
+          .ui-table-thead {
+            >tr {
+              >th {
+                &:nth-child(odd) {
+                  width: 15% !important;
+                }
+
+                &:nth-child(even) {
+                  width: 35% !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

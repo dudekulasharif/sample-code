@@ -1,0 +1,72 @@
+<div class="record-sections">
+  <div class="transalte-language">{{ 'admin.translateTo' | translate: lang }} {{ selectedLanguage }}</div>
+  <mat-accordion #accordion="matAccordion" class="example-headers-align availability-form" [multi]="true">
+    <mat-expansion-panel *ngFor="let subItem of attributesData" [expanded]="expanded">
+      <mat-expansion-panel-header (keydown.Space)="$event.stopImmediatePropagation()">
+        <mat-panel-title>
+          <span class="icon-title">
+            <mat-icon svgIcon="property-icon" class="catalog-title-icon"></mat-icon>
+            <span>{{ subItem.sectionTitle | uppercase }}</span>
+          </span>
+          <mat-form-field appearance="outline" class="search-field" miqStopClick>
+            <input
+              matInput
+              type="text"
+              autocomplete="no-autofill"
+              [placeholder]="'admin.searchAttribute' | translate: lang"
+              (keyup)="searchAttributes(subItem, $event)"
+            />
+          </mat-form-field>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="tables-grouping">
+        <p-table
+          [columns]="translationHeaders"
+          *ngIf="subItem.sectionAttrs?.length !== 0; else noRecords"
+          [value]="subItem.sectionAttrs"
+          class="default-lang-table"
+        >
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [ngClass]="col.class">
+                <span>{{ col.header | translate: lang | uppercase }}</span>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-catalog let-columns="columns" let-i="rowIndex">
+            <tr>
+              <td *ngFor="let col of columns">
+                <span *ngIf="col.field === 'attrName' || col.field === 'attrDesc'; else inputFields">{{
+                  catalog[col.field]
+                }}</span>
+                <ng-template #inputFields>
+                  <mat-form-field appearance="outline">
+                    <input
+                      type="text"
+                      autocomplete="no-autofill"
+                      matInput
+                      (change)="transaltionChanged(catalog)"
+                      name="{{ col.field }}"
+                      [(ngModel)]="catalog[col.field]"
+                      [ngClass]="{
+                        placeholder:
+                          catalog['attrName'] === catalog[col.field] || catalog['attrDesc'] === catalog[col.field]
+                      }"
+                    />
+                  </mat-form-field>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <ng-template #noRecords>
+        <div class="no-records" l10nTranslate>admin.noRecords</div>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="reset-save-row">
+    <button class="cancel-btn btn-cancel" (click)="resetTranslations()" l10nTranslate>admin.reset</button>
+    <button class="add-btn btn-submit" (click)="saveTranslations()" l10nTranslate>admin.save</button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+::ng-deep.userFormGroup {
+  width: 100%;
+  background-color: rgba(243, 243, 244, 0.54);
+  border: 1px solid rgba(204, 204, 204, 0.55);
+  .col {
+    padding-top: 8px;
+    height: 75px;
+    border-right: 1px solid rgba(204, 204, 204, 0.55);
+    &:last-of-type {
+      padding: 28px 0 0 20px;
+      border-right: 0;
+    }
+  }
+  label {
+    font-family: 'Futura Md BT';
+    padding-left: 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  mat-form-field {
+    font-family: 'Futura Md BT';
+    text-align: left;
+    padding: 0px 12px;
+  }
+}
+.section-hdr {
+  padding: 25px 0 11px 0;
+}

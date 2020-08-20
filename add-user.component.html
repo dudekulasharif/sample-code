@@ -1,0 +1,23 @@
+<h3 class="section-hdr" l10nTranslate>admin.addUser</h3>
+<div class="add-users">
+  <div [hidden]="showUserDetails" class="addUserContainer">
+    <miq-new-user-info #userInfo (addUser)="showDetails()"></miq-new-user-info>
+  </div>
+
+  <div *ngIf="showUserDetails">
+    <miq-users-list
+      #userslist
+      [isAddUser]="true"
+      [users]="usersToAdd"
+      [userGroupOptions]="userGroupOptions"
+      [userTypeOptions]="userTypeOptions"
+      [rolesOptions]="rolesOptions"
+      [displayedColumns]="ADD_USER_FIELDS"
+      [userStatusOptions]="userStatusOptions"
+      (userReqEvent)="userRequestEvent($event)"
+      (cancelClicked)="cancelAll($event)"
+      [userCountryOptions]="userCountryOptions"
+    >
+    </miq-users-list>
+  </div>
+</div>

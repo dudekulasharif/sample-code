@@ -1,0 +1,80 @@
+<div class="language-setup">
+  <div class="language-catalog-dropdowns">
+    <div class="col countries-dropdown">
+      <div>
+        <label>{{ 'admin.country' | translate: lang | uppercase }}</label>
+      </div>
+      <mat-form-field class="select language-dropdown" appearance="outline">
+        <mat-select
+          id="country"
+          [(value)]="selectedCountry"
+          [placeholder]="selectedCountry"
+          (selectionChange)="countrySelection($event)"
+        >
+          <mat-option [ngClass]="'select-option'" *ngFor="let item of countryLanguageValues" [value]="item">
+            {{ item.countryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col languages-dropdown">
+      <div>
+        <label>{{ 'admin.language' | translate: lang | uppercase }}</label>
+      </div>
+      <mat-form-field class="select language-dropdown" appearance="outline">
+        <mat-select
+          id="country"
+          [(value)]="selectedLanguage"
+          [placeholder]="selectedLanguage"
+          (selectionChange)="languageSelection($event)"
+        >
+          <mat-option [ngClass]="'select-option'" *ngFor="let item of languageValues" [value]="item">
+            {{ item.languageDesc | uppercase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col catalog-dropdown">
+      <div>
+        <label>{{ 'admin.catalogName' | translate: lang | uppercase }}</label>
+      </div>
+      <mat-form-field class="select language-dropdown" appearance="outline">
+        <mat-select
+          id="country"
+          [(value)]="selectedCatalog"
+          [placeholder]="selectedCatalog"
+          (selectionChange)="catalogSelection($event)"
+        >
+          <mat-option [ngClass]="'select-option'" *ngFor="let item of catalogList" [value]="item">
+            {{ item.catalogName | uppercase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <mat-tab-group [selectedIndex]="selectedTabIndex">
+      <mat-tab *ngFor="let entity of entities; let i = index" disabled>
+        <ng-template mat-tab-label>
+          <div (click)="getTabIndex(entity, i)">{{ 'admin.' + entity | translate: lang | uppercase }}</div>
+        </ng-template>
+        <div class="tab-content" *ngIf="attributesSet[entity]">
+          <miq-attribute-set
+            [selectedLanguage]="selectedLanguage"
+            [selectedCountry]="attributesFilterObject.selectedCountryId"
+            [attributesData]="attributesSet[entity]"
+            (attributesTranslationChanges)="attributesTranslationChanges($event)"
+            (searchKeywords)="searchKeywords($event)"
+            (resetAttributes)="resetAttributes()"
+            [dataClassAttributes]="dataClassAttributes"
+            [entity]="dataClass"
+            [selectedLanguageId]="attributesFilterObject.selectedLanguageId"
+            (attributesSaved)="attributesSaved()"
+          >
+          </miq-attribute-set>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div *ngIf="noRecords" class="no-records" l10nTranslate>admin.noRecords</div>
+  </div>
+</div>
